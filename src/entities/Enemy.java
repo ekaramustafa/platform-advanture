@@ -1,6 +1,9 @@
 package entities;
 
 import java.awt.image.BufferedImage;
+
+import main.Game;
+
 import static utils.Constants.EntityConstants.EnemyConstants.*;
 
 public abstract class Enemy extends Entity{
@@ -11,7 +14,7 @@ public abstract class Enemy extends Entity{
 	public Enemy(float x, float y, int width, int height, int enemyType) {
 		super(x, y, width, height);
 		this.enemyType = enemyType;
-		initHitbox(x, y, width, height);
+		initHitbox(x, y, (int)(width*(Game.SCALE)),(int)(height*(Game.SCALE)));
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -30,7 +33,13 @@ public abstract class Enemy extends Entity{
 	
 	@Override
 	public void update(){
+		//updateMove();
 		updateAnimationTick();
+	}
+	
+	//Patrol
+	private void updateMove(int[][] lvlData) {
+		
 	}
 
 }

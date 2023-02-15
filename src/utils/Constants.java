@@ -65,7 +65,14 @@ public static class EntityConstants{
 		public static final int CRABBY_WIDTH = (int)(CRABBY_WIDTH_DEFAULT * Game.SCALE);
 		public static final int CRABBY_HEIGHT = (int)(CRABBY_HEIGHT_DEFAULT * Game.SCALE);
 		
-			public static int getSpriteAmount(int enemy_type,int enemyAction) {
+		public static final int CRABBY_HITBOX_HEIGHT = (int)(19*(Game.SCALE));
+		public static final int CRABBY_HITBOX_WIDTH = (int)(22*Game.SCALE);
+		
+		//(start of sprite-CRABBY_HITBOX_WIDTH/HEIGHT = 26
+		public static final int CRABBY_DRAW_OFFSET_X = (int)(Game.SCALE * 26);
+		public static final int CRABBY_DRAW_OFFSET_Y = (int)(Game.SCALE * 9);
+			
+		public static int getSpriteAmount(int enemy_type,int enemyAction) {
 			
 				
 				switch(enemy_type) {

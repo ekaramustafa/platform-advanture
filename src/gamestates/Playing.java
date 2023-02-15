@@ -5,10 +5,12 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+import entities.EnemyManager;
 import entities.Player;
 import levels.LevelManager;
 import main.Game;
 import ui.PauseOverlay;
+import utils.Constants.EntityConstants.EnemyConstants;
 import utils.LoadSave;
 
 public class Playing extends State implements StateMethods{
@@ -16,6 +18,7 @@ public class Playing extends State implements StateMethods{
 
 	private Player player;
 	private LevelManager levelManager;
+	private EnemyManager enemyManager;
 	private PauseOverlay pauseOverlay;
 	private boolean paused = false;
 	
@@ -41,6 +44,7 @@ public class Playing extends State implements StateMethods{
 		player = new Player(200,200,(int)(64*Game.SCALE),(int) (40*Game.SCALE));
 		player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		pauseOverlay = new PauseOverlay(this);
+		enemyManager = new EnemyManager(this);
 		
 	}
 	
@@ -54,6 +58,7 @@ public class Playing extends State implements StateMethods{
 		if(!paused) {
 			levelManager.update();
 			player.update();
+			enemyManager.update();
 			//for moving background
 			checkCloseToBorder();
 			}
@@ -89,7 +94,7 @@ public class Playing extends State implements StateMethods{
 		// TODO Auto-generated method stub
 		levelManager.draw(g, xLvlOffset);
 		player.render(g, xLvlOffset);
-		
+		enemyManager.draw(g, xLvlOffset);
 		//if the game paused show the pause menu
 		if(paused) {
 			g.setColor(new Color(0,0,0,150));
