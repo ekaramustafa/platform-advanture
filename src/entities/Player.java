@@ -26,7 +26,7 @@ public class Player extends Entity{
 
 	}
 	
-	@Override
+	//@Override
 	public void update() {
 		updatePos();	
 		updateAnimationTick();

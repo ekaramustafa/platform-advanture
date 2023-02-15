@@ -12,7 +12,7 @@ public class EnemyManager {
 	
 	private Playing playing;
 	private BufferedImage[][] crabbyArr;
-	private ArrayList<Crabby> crabbies = new ArrayList<Crabby>();
+	private ArrayList<Crabby> crabbies = new ArrayList<>();
 	
 	public EnemyManager(Playing playing) {
 		this.playing = playing;
@@ -25,12 +25,12 @@ public class EnemyManager {
 		crabbies = LoadSave.GetCrabs();
 	}
 	
-	public void update() {
-		updateCrabs();
+	public void update(int[][] lvlData) {
+		updateCrabs(lvlData);
 	}
-	private void updateCrabs() {
+	private void updateCrabs(int[][] lvlData) {
 		for(Crabby c : crabbies) {
-			c.update();
+			c.update(lvlData);
 		}
 	}
 	
@@ -39,8 +39,9 @@ public class EnemyManager {
 	}
 
 	private void drawCrabs(Graphics g,int xLvlOffset) {
-		for(Crabby c: crabbies) {
-			g.drawImage(crabbyArr[c.getEntityState()][c.getAnimationIndex()], (int)c.getHitbox().x - xLvlOffset, (int)c.getHitbox().y,CRABBY_WIDTH,CRABBY_HEIGHT, null);
+		for(Crabby c: crabbies) {	//- xLvlOffset - CRABBY_DRAW_OFFSET_X - CRABBY_DRAW_OFFSET_Y
+			g.drawImage(crabbyArr[c.getEntityState()][c.getAnimationIndex()], (int)c.getHitbox().x - xLvlOffset - CRABBY_DRAW_OFFSET_X, (int)c.getHitbox().y,CRABBY_WIDTH,CRABBY_HEIGHT, null);
+			c.drawHitbox(g, xLvlOffset);
 		}
 		
 	}
